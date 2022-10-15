@@ -67,6 +67,7 @@ class GuessWord:
             if guess_char == actual_char:
                 colored_char = f"{Colors.green}{actual_char}{Colors.base}"
                 self.word_char[i] = colored_char
+                self.edit_alphabet(guess_char, colored_char)
 
     def set_yellow(self):
         for i, _ in enumerate(self.word_char):
@@ -74,6 +75,10 @@ class GuessWord:
             if guess_char in chosen_word:
                 colored_char = f"{Colors.yellow}{guess_char}{Colors.base}"
                 self.word_char[i] = colored_char
+                self.edit_alphabet(guess_char, colored_char)
+            else:
+                colored_char = f"{Colors.red}{guess_char}{Colors.base}"
+                self.edit_alphabet(guess_char, colored_char)
 
     def edit_alphabet(self, k, v):
         if k not in GuessWord.alphabet.keys():
@@ -95,13 +100,13 @@ class GuessWord:
         self.set_yellow()
         self.post_guess = "".join(self.word_char)
         GuessWord.wordles.append(self.post_guess)
-        print(self.post_guess)
+        for element in GuessWord.wordles:
+            print(element)
+        # print(self.post_guess)
 
     def check_perfect_guess(self):
         if self.word_str == chosen_word:
             print(f"Congratulations! You beat Wordle in {GuessWord.counter} guesses")
-            for element in GuessWord.wordles:
-                print(element)
             sys.exit(1)
 
     def check_game_loss(self):
