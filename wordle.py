@@ -111,5 +111,5 @@ class GuessWord:
 
     def check_game_loss(self):
         if GuessWord.counter == guess_max + 1:
-            print(f"You lost the game. The word was {chosen_word}")
+            print(f"You lost the game. The word was '{chosen_word}'")
             sys.exit(1)
